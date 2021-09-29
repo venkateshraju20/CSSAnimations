@@ -77,7 +77,7 @@
   @extend %positionA;
   @include direction(0, 0);
   display: block;
-  background-image: url(../images/road.jpg);
+  background-image: url(../images/road2.jpg);
   z-index: 1;
   background-repeat: repeat-x;
   @include animation(planX 5s linear infinite);
