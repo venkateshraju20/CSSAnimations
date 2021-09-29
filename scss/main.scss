@@ -1,0 +1,162 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+%positionA {
+  position: absolute;
+}
+
+%positionR {
+  position: relative;
+}
+
+@mixin commonWH($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin commonBG($image, $position, $size) {
+  background-image: url($image);
+  background-position: $position;
+  background-size: $size;
+}
+
+@mixin direction($left, $bottom) {
+  left: $left;
+  bottom: $bottom;
+}
+
+@mixin animation($animation) {
+  animation: $animation;
+}
+
+.bg-container {
+  @include commonWH(100%, 100vh);
+  @extend %positionR;
+  @include commonBG("../images/background.jpg", center, cover);
+  overflow: hidden;
+}
+
+.bg-runway {
+  @include commonWH(100%, 200px);
+  @extend %positionA;
+  background-image: url(../images/road.jpg);
+  @include direction(0, 0);
+}
+
+.bg-airplane {
+  @include commonWH(600px, 220px);
+  @extend %positionA;
+  bottom: 130px;
+  right: -200px;
+  @include animation(plan 4s linear infinite);
+}
+
+@keyframes plan {
+  0% {
+    transform: translateX(0px) translateY(0px) rotate(0deg);
+  }
+  30% {
+    transform: translateX(-500px) translateY(0px) rotate(2deg);
+  }
+  100% {
+    transform: translateX(-1500px) translateY(-200px) rotate(20deg);
+  }
+}
+
+.hero {
+  @include commonWH(100%, 100vh);
+  @extend %positionR;
+  @include commonBG("../images/sky.jpg", center, cover);
+  overflow-x: hidden;
+}
+
+.highway {
+  @include commonWH(500%, 200px);
+  @extend %positionA;
+  @include direction(0, 0);
+  display: block;
+  background-image: url(../images/road.jpg);
+  z-index: 1;
+  background-repeat: repeat-x;
+  @include animation(planX 5s linear infinite);
+}
+
+@keyframes planX {
+  100% {
+    transform: translateX(-3400px);
+  }
+}
+
+.city {
+  @include commonWH(500%, 250px);
+  @extend %positionA;
+  @include direction(0, 200px);
+  background-image: url(../images/city.png);
+  right: 0;
+  display: block;
+  z-index: 1;
+  background-repeat: repeat-x;
+  @include animation(planY 20s linear infinite);
+}
+
+@keyframes planY {
+  100% {
+    transform: translateX(-1400px);
+  }
+}
+
+.car {
+  width: 400px;
+  @extend %positionA;
+  @include direction(50%, 100px);
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.car img {
+  width: 100%;
+  @include animation(planZ 1s linear infinite);
+}
+
+@keyframes planZ {
+  100% {
+    transform: translateY(-1px);
+  }
+  50% {
+    transform: translateY(1px);
+  }
+  0% {
+    transform: translateY(-1px);
+  }
+}
+
+.wheel {
+  @include direction(50%, 178px);
+  @extend %positionA;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.wheel img {
+  width: 72px;
+  height: 72px;
+  @include animation(planA 1s linear infinite);
+}
+
+@keyframes planA {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.front-wheel {
+  left: 80px;
+  @extend %positionA;
+}
+
+.back-wheel {
+  left: -165px;
+  @extend %positionA;
+}
